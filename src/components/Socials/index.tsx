@@ -27,7 +27,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(29, 161, 242)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].twitter}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://twitter.com/${socialLinks[0].twitter}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -50,7 +54,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(66, 103, 178)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].facebook}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://www.facebook.com/${socialLinks[0].facebook}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -73,7 +81,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(64, 120, 192)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].github}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://www.github.com/${socialLinks[0].github}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -96,7 +108,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(0, 119, 181)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].linkedIn}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://www.linkedin.com/in${socialLinks[0].linkedIn}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -119,7 +135,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(131, 58, 180)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].instagram}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://instagram.com/${socialLinks[0].instagram}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -142,7 +162,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(255, 67, 0);" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].redit}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://www.reddit.com/user/${socialLinks[0].redit}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -165,7 +189,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(255, 252, 0)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].snapchat}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://snapchat.com/add/${socialLinks[0].snapchat}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -228,7 +256,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(255, 0, 80);" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].tiktok}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://tiktok.com/${socialLinks[0].tiktok}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -251,7 +283,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(0, 136, 204)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].telegram}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://t.me/${socialLinks[0].telegram}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -274,7 +310,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(255, 0, 0);" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].youtube}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://www.youtube.com/channel/${socialLinks[0].youtube}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >
@@ -297,7 +337,11 @@ const Socials = () => {
           <a
             className="p-2  bg-white rounded cursor-pointer hover:text-orange"
             style={{ color: "rgb(37, 211, 102)" }}
-            href={socialLinks.length > 0 ? `${socialLinks[0].whatsapp}` : "#"}
+            href={
+              socialLinks.length > 0
+                ? `https://wa.me/${socialLinks[0].whatsapp}`
+                : "#"
+            }
             target="_blank"
             rel="noreferrer"
           >

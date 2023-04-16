@@ -7,6 +7,8 @@ type IUser = {
   profile_pic: string;
   id: number;
   public_phone_number: string;
+  private_phone_number: string;
+  passcode: string;
   occupation: string;
   cv: string;
 };
@@ -23,6 +25,8 @@ type IUser2 = {
   occupation: string;
   cv: string;
   id: number;
+  private_phone_number: string;
+  passcode: string;
 };
 
 interface IUserProvider {

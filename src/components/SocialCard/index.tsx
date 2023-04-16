@@ -2,6 +2,9 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateSocialLink } from "../../utils/api/dataApi";
+import { Oval } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type Props = {
   title: string;
@@ -11,13 +14,19 @@ type Props = {
 const SocialCard: FC<Props> = ({ title, url, id }) => {
   const [inputVal, setInput] = useState(url);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const [loading, setLoading] = useState(false);
+  const notify = (arg: string) => toast(arg);
 
   const runUpdateLink = () => {
+    setLoading(true);
     const key = title;
     const data: any = {};
     data[key] = inputVal;
     data["id"] = id;
-    dispatch(updateSocialLink(data));
+    dispatch(updateSocialLink(data)).then(() => {
+      setLoading(false);
+      notify("Updated");
+    });
   };
 
   const runDeleteLink = () => {
@@ -26,10 +35,13 @@ const SocialCard: FC<Props> = ({ title, url, id }) => {
     data[key] = "";
     data["id"] = id;
     setInput("");
-    dispatch(updateSocialLink(data));
+    dispatch(updateSocialLink(data)).then(() => {
+      notify("Deleted!");
+    });
   };
   return (
     <div className="flex items-center justify-between px-3 pt-4 pb-3 my-3 space-x-3 bg-white rounded ">
+      <ToastContainer />
       <div className="w-11/12 ">
         <div className="relative mb-2 text-dark bg-[#EFF0EC] border-opacity-25 rounded">
           <input
@@ -48,21 +60,36 @@ const SocialCard: FC<Props> = ({ title, url, id }) => {
           className="text-sm cursor-pointer hover:text-orange"
           onClick={runUpdateLink}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-            aria-hidden="true"
-            role="img"
-            className="iconify iconify--material-symbols"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="currentColor"
-              d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z"
-            ></path>
-          </svg>
+          {!loading ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              role="img"
+              className="iconify iconify--material-symbols"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z"
+              ></path>
+            </svg>
+          ) : (
+            <Oval
+              height={20}
+              width={20}
+              color="#fff"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor="black"
+              strokeWidth={6}
+              strokeWidthSecondary={6}
+            />
+          )}
         </span>
         <span
           className="cursor-pointer hover:text-orange"

@@ -19,6 +19,8 @@ type backendUserType = {
   public_phone_number: string;
   occupation: string;
   cv: string;
+  private_phone_number: string;
+  passcode: string;
 };
 
 const AuthUlr = `${APIURL}/auth/`;
@@ -35,6 +37,8 @@ const initailState: IUserProvider = {
     public_phone_number: "",
     occupation: "",
     cv: "",
+    private_phone_number: "",
+    passcode: "",
   },
   error: null,
   loading: false,
@@ -69,6 +73,8 @@ const userSlice = createSlice({
           public_phone_number: rawUserData.public_phone_number,
           occupation: rawUserData.occupation,
           cv: rawUserData.cv,
+          private_phone_number: rawUserData.private_phone_number,
+          passcode: rawUserData.passcode,
         };
         state.loading = false;
         state.isLogged = true;

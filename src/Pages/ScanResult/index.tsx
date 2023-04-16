@@ -8,8 +8,12 @@ import { useParams } from "react-router-dom";
 import { getUserApi } from "../../utils/api/account";
 import { getLinks, getSocialLinks } from "../../utils/api/dataApi";
 import SocialIcons from "../../components/SocialIcons";
-import LinkCard from "../../components/LinkCard";
 import { RotatingTriangles } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { IoIosCopy } from "react-icons/io";
+import { AiFillCheckCircle } from "react-icons/ai";
+
 const ScannedResult = () => {
   //REDUX
   const { socialLinks, links } = useSelector((store: IRootState) => store.data);
@@ -19,8 +23,12 @@ const ScannedResult = () => {
   const { username } = useParams();
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const [notFound, setNotFound] = useState<null | string>(null);
-  const [phoneCopied, setPhoneCopied] = useState("Phone Number");
+  const [phoneCopied, setPhoneCopied] = useState("Public Number");
+  const [privatePhone, setPrivatePhone] = useState("Private Number");
+  const [privatePhoneCopied, setPrivatePhoneCopied] = useState(false);
   const [reload, setReload] = useState("Phone Number");
+  const notify = (arg: string) => toast(arg);
+
   // DATA STATE
   const [userProfileData, setUserProfileData] = useState<IUser2 | null>(null);
 
@@ -35,26 +43,49 @@ const ScannedResult = () => {
     }
   };
 
+  const getPrivateContact = () => {
+    navigator.clipboard.writeText(
+      userProfileData ? userProfileData?.public_phone_number : ""
+    );
+    setPrivatePhone(
+      userProfileData ? userProfileData.private_phone_number : ""
+    );
+    notify("Private Number Copied To Clipboard!");
+    setTimeout(() => {
+      setPrivatePhone("Private Number");
+    }, 10000);
+  };
+  const getPrompt = () => {
+    setPrivatePhoneCopied(false);
+    const code = userProfileData?.passcode;
+    const passcode = prompt("Enter passcode");
+    if (code === passcode) {
+      getPrivateContact();
+    } else {
+      notify("Incorrect Passcode");
+    }
+  };
+
   const setCopied = () => {
     navigator.clipboard.writeText(
       userProfileData ? userProfileData?.public_phone_number : ""
     );
     setPhoneCopied("Copied!");
     setTimeout(() => {
-      setPhoneCopied("Phone Number");
+      setPhoneCopied("Public Number");
     }, 2000);
   };
 
   useEffect(() => {
     if (username) {
+      dispatch(getLinks({ username: username }));
+      dispatch(getSocialLinks({ username: username }));
       const getUser = async () => {
         const response: IUser2[] = await getUserApi({ username });
         // console.log("GOTTENT THE USER OO", response);
         setUserProfileData(response[0]);
       };
       getUser().catch(() => setNotFound("THIS USER WAS NOT FOUND"));
-      dispatch(getLinks({ username: username }));
-      dispatch(getSocialLinks({ username: username }));
     }
     const nullFooter = document.getElementById("navbar")!;
     nullFooter.style.display = "none";
@@ -73,13 +104,14 @@ const ScannedResult = () => {
             wrapperClass="rotating-triangels-wrapper"
           />
         </div>
-      ) : !userProfileData && !socialLinks && !links ? (
+      ) : !userProfileData && socialLinks.length === 0 && links.length === 0 ? (
         <div className="flex justify-center items-center h-full">
           <h1 className="text-3xl">OOPS... This user was not found</h1>
         </div>
       ) : (
         <>
           {" "}
+          <ToastContainer />
           <div className="flex items-center justify-center p-5 bg-gray-300">
             <a href="/">
               <p className="font-bold cursor-pointer md:text-2xl">Tap It</p>
@@ -120,19 +152,57 @@ const ScannedResult = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center justify-center mt-20 mb-10 space-x-3">
+            <div className="flex  items-center justify-center mt-20 mb-10 space-x-3">
               <p
                 onClick={setCopied}
                 className="flex items-center justify-center px-3 py-3 space-x-2 text-xs font-bold text-center border rounded-md cursor-pointer bg-light border-dark text-dark sm:px-5 md:text-sm hover:opacity-80"
               >
                 {phoneCopied}
               </p>
-              {/* <button
-            className="bg-orange text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
-            type="button"
-          >
-            Private Contact
-          </button> */}
+              <div className="relative">
+                <button
+                  className="bg-orange  text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
+                  type="button"
+                  onClick={getPrompt}
+                >
+                  {privatePhone}{" "}
+                </button>
+                {privatePhone === userProfileData?.private_phone_number ? (
+                  <>
+                    {privatePhoneCopied ? (
+                      <AiFillCheckCircle
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          right: "-40px",
+                          cursor: "pointer",
+                          color: "green",
+                        }}
+                        size={40}
+                      />
+                    ) : (
+                      <IoIosCopy
+                        style={{
+                          position: "absolute",
+                          top: "2px",
+                          right: "-40px",
+                          cursor: "pointer",
+                          color: "red",
+                        }}
+                        size={40}
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            userProfileData
+                              ? userProfileData.private_phone_number
+                              : ""
+                          );
+                          setPrivatePhoneCopied(true);
+                        }}
+                      />
+                    )}
+                  </>
+                ) : null}
+              </div>
             </div>
             <div className="container pb-10 space-y-6 p-5">
               <section className="">

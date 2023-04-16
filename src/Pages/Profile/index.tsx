@@ -9,7 +9,12 @@ import { updateProfile } from "../../utils/api/account";
 import Phone from "../../components/Phone";
 import { getSocialLinks } from "../../utils/api/dataApi";
 import { Oval } from "react-loader-spinner";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Profile = () => {
+  const notify = (arg: string) => toast(arg);
+
   let cvRef = useRef<HTMLInputElement | HTMLButtonElement | null>(null);
   let profilePicRef = useRef<any>(null);
   const { isLogged, user } = useSelector((store: IRootState) => store.user);
@@ -32,6 +37,10 @@ const Profile = () => {
   const [publicNumber, setPublicNumber] = useState<string | undefined>(
     user?.public_phone_number
   );
+  const [privateNumber, setPrivateNumber] = useState<string | undefined>(
+    user?.private_phone_number
+  );
+  const [passcode, setPasscode] = useState<string | undefined>(user?.passcode);
 
   const profileSaved = () => {
     setSaveProfile("Saved!");
@@ -69,10 +78,13 @@ const Profile = () => {
       occupation,
       public_phone_number: publicNumber,
       cv: userCv,
+      private_phone_number: privateNumber,
+      passcode,
     };
     const res = await updateProfile(data);
     res.status === 200 ? profileSaved() : setSaveProfile("Try Again");
     setSaveLoading(false);
+    notify("Profile Saved!");
   };
   useEffect(() => {
     !isLogged ? navigate("/") : null;
@@ -82,6 +94,7 @@ const Profile = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className="flex justify-between px-3 space-x-8 sm:px-10 md:px-20">
         <div className="w-full h-auto lg:p-10 lg:py-20  md:p-1 md:py-0 sm:p-0 my-5 overflow-scroll no-scrollbar">
           <div className="pt-10 font-bold md:text-lg">Profile</div>
@@ -189,7 +202,7 @@ const Profile = () => {
                     Public Phone Number
                   </label>
                 </div>
-                {/* <div className="flex items-center pt-3">
+                <div className="flex items-center pt-3">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -218,7 +231,8 @@ const Profile = () => {
                         id="number"
                         name="number"
                         type="text"
-                        value="08164456587"
+                        value={privateNumber ? privateNumber : ""}
+                        onChange={(e) => setPrivateNumber(e.target.value)}
                       />
                       <label
                         className="absolute -top-4 left-0 flex items-center text-dark text-opacity-50 px-3 pt-5 transition-all duration-200 ease-in-out text-sm"
@@ -235,8 +249,9 @@ const Profile = () => {
                         id="passcode"
                         name="passcode"
                         type="number"
-                        maxLength="5"
-                        value="1234"
+                        maxLength={5}
+                        value={passcode ? passcode : ""}
+                        onChange={(e) => setPasscode(e.target.value)}
                       />
                       <label
                         className="absolute -top-4 left-0 flex items-center text-dark text-opacity-50 px-3 pt-5 transition-all duration-200 ease-in-out text-sm"
@@ -246,7 +261,7 @@ const Profile = () => {
                       </label>
                     </div>
                   </div>
-                </div> */}
+                </div>
                 <div className="relative mb-2 text-dark bg-[#EFF0EC] border-opacity-25 rounded">
                   <input
                     className="outline-none w-full rounded bg-transparent text-sm transition-all duration-200 ease-in-out pt-5 p-3 "
