@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .base-bg {
+    @apply bg-[#ededed];
+  }
+  .bg-orange {
+    @apply bg-[#4f46e5];
+  }
+  .text-primary {
+    @apply text-gray-800;
+  }
+  .text-light {
+    @apply text-gray-200;
+  }
+  .border-dark {
+    @apply border-2 border-gray-700;
+  }
+  .customBtn {
+    @apply bg-[#4f46e5] text-gray-100 rounded-md px-3 sm:px-5 py-3 font-bold justify-center text-center md:text-sm cursor-pointer text-xs hover:opacity-80 flex items-center space-x-2;
+  }
+  .text-orange {
+    @apply text-[#4f46e5];
+  }
+  .text-main {
+    @apply text-gray-500;
+  }
+  .border-orange {
+    @apply border-[#4f46e5];
+  }
+  .no-scrollbar {
+    @layer scrollbar-hide;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
