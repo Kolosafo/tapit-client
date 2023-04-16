@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState } from "react";
 import { Oval } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
@@ -111,7 +112,8 @@ const ResetPasswordConfrim = () => {
                 onClick={runResetPassword}
                 style={{
                   pointerEvents: loading ? "none" : "auto",
-                  disabled: loading ? true : false,
+                  // @ts-ignore
+                  disabled: loading ? "true" : "false",
                 }}
               >
                 Reset Password

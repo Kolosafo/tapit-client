@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useRef, useState, useEffect } from "react";
 import DummyImg from "../../assets/img/dummy_profile.jpg";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +10,7 @@ import Phone from "../../components/Phone";
 import { getSocialLinks } from "../../utils/api/dataApi";
 import { Oval } from "react-loader-spinner";
 const Profile = () => {
-  let cvRef = useRef<any>(null);
+  let cvRef = useRef<HTMLInputElement | HTMLButtonElement | null>(null);
   let profilePicRef = useRef<any>(null);
   const { isLogged, user } = useSelector((store: IRootState) => store.user);
   const { socialLinks, links } = useSelector((store: IRootState) => store.data);
@@ -82,7 +83,7 @@ const Profile = () => {
   return (
     <>
       <div className="flex justify-between px-3 space-x-8 sm:px-10 md:px-20">
-        <div className="w-full h-auto sm:p-0 md:p-10 py-20 my-10 overflow-scroll no-scrollbar">
+        <div className="w-full h-auto lg:p-10 lg:py-20  md:p-1 md:py-0 sm:p-0 my-5 overflow-scroll no-scrollbar">
           <div className="pt-10 font-bold md:text-lg">Profile</div>
           <div className="flex justify-between p-5 my-3 bg-white shadow-lg rounded-2xl">
             <div></div>{" "}
@@ -92,6 +93,7 @@ const Profile = () => {
               )}
               <label
                 className="block text-sm font-medium text-gray-900 cursor-pointer hover:opacity-75"
+                // @ts-ignore
                 onClick={() => cvRef.click()}
               >
                 Upload CV {cvName}
@@ -100,7 +102,8 @@ const Profile = () => {
                 type="file"
                 accept=".xlsx,.xls,.doc, .docx,.ppt, .pptx,.txt,.pdf"
                 hidden
-                ref={(input) => (cvRef = input as HTMLInputElement)}
+                // @ts-ignore
+                ref={(input) => (cvRef = input)}
                 onChange={(e) => {
                   convertPdf(e.target.files ? e.target.files[0] : null);
                   e.target.files ? setCvName(e.target.files[0].name) : null;
@@ -130,6 +133,7 @@ const Profile = () => {
                   type="file"
                   accept="image/*"
                   hidden
+                  // @ts-ignore
                   ref={(input) => (profilePicRef = input as HTMLInputElement)}
                   onChange={(e) =>
                     handleChange(e.target.files ? e.target.files[0] : null)
@@ -139,6 +143,7 @@ const Profile = () => {
                   <button
                     className="bg-orange text-light border border-orange w-full rounded-3xl px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
                     type="button"
+                    // @ts-ignore
                     onClick={() => profilePicRef.click()}
                   >
                     Pick an Image

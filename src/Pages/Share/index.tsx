@@ -12,6 +12,7 @@ import SocialIcons from "../../components/SocialIcons";
 import Phone from "../../components/Phone";
 const Share = () => {
   const [qrColor, setQrColor] = useState("black");
+  const [copyLink, setCopiedLink] = useState("Copy Link");
   const [changeQrColor, setChangeQrColor] = useState(false);
   // REDUX
   const { isLogged, user } = useSelector((store: IRootState) => store.user);
@@ -21,7 +22,7 @@ const Share = () => {
 
   const qrRef = useRef<any>();
   const downloadQR = () => {
-    const canvas = document.getElementById("123456");
+    const canvas: any = document.getElementById("123456");
     const pngUrl = canvas
       ? canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
       : null;
@@ -34,6 +35,13 @@ const Share = () => {
   };
   const qrCodeValue = "www.tapitbydendo.com/" + user?.username;
 
+  const copyQrLink = () => {
+    navigator.clipboard.writeText(qrCodeValue);
+    setCopiedLink("Copied!");
+    setTimeout(() => {
+      setCopiedLink("Copy Link");
+    }, 2000);
+  };
   useEffect(() => {
     !isLogged ? navigate("/") : null;
     user ? dispatch(getSocialLinks({ username: user.username })) : null;
@@ -41,7 +49,7 @@ const Share = () => {
   return (
     <>
       <div className="flex justify-between px-3 space-x-8 sm:px-10 md:px-20">
-        <div className="w-full h-auto md:p-10 md:py-20 sm:p-0 my-10 overflow-scroll no-scrollbar">
+        <div className="w-full h-auto lg:p-10 lg:py-20  md:p-1 md:py-0 sm:p-0 my-5 overflow-scroll no-scrollbar">
           <div className="min-h-[60vh] my-5">
             <h1 className="py-3 font-semibold">
               Share these links to people to view your Tap It Profile
@@ -50,8 +58,9 @@ const Share = () => {
               <button
                 className="bg-light border border-dark text-dark undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
                 type="button"
+                onClick={copyQrLink}
               >
-                Copy Link
+                {copyLink}
               </button>
               <button
                 className="bg-orange text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"

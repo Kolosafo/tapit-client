@@ -58,7 +58,7 @@ const Admin = () => {
         </button>
       </div> */}
       <div className="flex justify-between px-3 space-x-8 sm:px-10 md:px-20 no-scrollbar">
-        <div className="w-full h-auto md:p-10 sm:p-0 py-20 my-10 overflow-scroll no-scrollbar scrollbar-hide">
+        <div className="w-full h-auto lg:p-10 lg:py-20  md:p-1 md:py-0 sm:p-0 my-5 overflow-scroll no-scrollbar">
           {/* <div className="flex items-center space-x-3">
             <div className="flex items-center text-xs  text-red-600 space-x-1 pt-1">
               <span className="text-red-600">

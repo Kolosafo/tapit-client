@@ -17,7 +17,7 @@ const Navbar = () => {
       className={`${
         !isLogged
           ? "fixed left-0 top-0 z-50 flex items-center justify-between w-full px-3 py-4 md:px-20 flex-nowrap bg-white"
-          : "flex items-center justify-between p-3 bg-white shadow-xl sm:p-5 rounded-2xl"
+          : "flex items-center justify-between p-2 bg-white shadow-xl rounded-2xl"
       }`}
     >
       <div className="flex items-center space-x-4 sm:space-x-8">

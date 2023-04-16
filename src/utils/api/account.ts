@@ -84,7 +84,12 @@ export const resetPassword = createAsyncThunk(
 
 // export const Logout = async () => {}
 
-export const contactUs = async (name:string, message:string, email:string, setSendStatus:any) => {
+export const contactUs = async (
+  name: string,
+  message: string,
+  email: string,
+  setSendStatus: any
+) => {
   const data = { name: name, message: message, email: email };
   const response = await axios.post(`${APIURL}/api/contact_us/`, data);
   if (response.status === 200) {

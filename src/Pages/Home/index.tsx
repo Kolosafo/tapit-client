@@ -4,7 +4,7 @@ import PhoneImg from "../../assets/img/singlePhone.png";
 import { useNavigate } from "react-router-dom";
 
 const IndexHtml = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div id="__next">
       <div className="text-[#484646]">
@@ -38,7 +38,10 @@ const IndexHtml = () => {
                         Nfc cards for sharing contact information and social
                         media content.
                       </p>
-                      <button className="p-2 text-xl font-semibold rounded-md text-white px-20 lg:self-start md:self-center bg-green-600" onClick={() => navigate("/contactUs")}>
+                      <button
+                        className="p-2 text-xl font-semibold rounded-md text-white px-20 lg:self-start md:self-center bg-green-600"
+                        onClick={() => navigate("/contactUs")}
+                      >
                         Get Started
                       </button>
                     </div>
