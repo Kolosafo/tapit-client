@@ -59,9 +59,7 @@ const userSlice = createSlice({
       state.loading = true;
     }),
       builder.addCase(loginUser.fulfilled, (state, { payload }) => {
-        console.log("THE LOGIN DATA");
         const rawUserData: backendUserType = jwt_decode(payload.refresh);
-        console.log("USER", rawUserData);
         state.user = {
           username: rawUserData.username,
           email: rawUserData.email,

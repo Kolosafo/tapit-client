@@ -239,6 +239,12 @@ function Register(): JSX.Element {
                     className="bg-[#4f46e5] text-white border border-orange w-full rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
                     type="submit"
                     onClick={runRegister}
+                    style={{
+                      pointerEvents: loading ? "none" : "auto",
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-ignore
+                      disabled: loading ? "true" : "false",
+                    }}
                   >
                     {loading ? "Creating your account" : "Register"}
                   </button>

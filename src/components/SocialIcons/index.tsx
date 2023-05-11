@@ -8,7 +8,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
     <>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(29, 161, 242)" }}
+        style={{
+          color: "rgb(29, 161, 242)",
+          display: socialLinks[0].twitter ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://twitter.com/${socialLinks[0].twitter}`
@@ -35,7 +38,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(66, 103, 178)" }}
+        style={{
+          color: "rgb(66, 103, 178)",
+          display: socialLinks[0].facebook ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://www.facebook.com/${socialLinks[0].facebook}`
@@ -62,7 +68,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(64, 120, 192)" }}
+        style={{
+          color: "rgb(64, 120, 192)",
+          display: socialLinks[0].github ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://www.github.com/${socialLinks[0].github}`
@@ -89,7 +98,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(0, 119, 181)" }}
+        style={{
+          color: "rgb(0, 119, 181)",
+          display: socialLinks[0].linkedIn ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://www.linkedin.com/in${socialLinks[0].linkedIn}`
@@ -116,7 +128,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(131, 58, 180)" }}
+        style={{
+          color: "rgb(131, 58, 180)",
+          display: socialLinks[0].instagram ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://instagram.com/${socialLinks[0].instagram}`
@@ -143,7 +158,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(255, 67, 0);" }}
+        style={{
+          color: "rgb(255, 67, 0);",
+          display: socialLinks[0].redit ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://www.reddit.com/user/${socialLinks[0].redit}`
@@ -170,7 +188,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(255, 252, 0)" }}
+        style={{
+          color: "rgb(255, 252, 0)",
+          display: socialLinks[0].snapchat ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://snapchat.com/add/${socialLinks[0].snapchat}`
@@ -197,7 +218,7 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <span
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(230, 0, 35);" }}
+        style={{ color: "rgb(230, 0, 35);", display: "none" }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -217,7 +238,7 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </span>
       <span
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(29, 185, 84)" }}
+        style={{ color: "rgb(29, 185, 84)", display: "none" }}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +258,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </span>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(255, 0, 80);" }}
+        style={{
+          color: "rgb(255, 0, 80);",
+          display: socialLinks[0].tiktok ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://tiktok.com/${socialLinks[0].tiktok}`
@@ -264,7 +288,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(0, 136, 204)" }}
+        style={{
+          color: "rgb(0, 136, 204)",
+          display: socialLinks[0].telegram ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://t.me/${socialLinks[0].telegram}`
@@ -291,7 +318,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(255, 0, 0);" }}
+        style={{
+          color: "rgb(255, 0, 0);",
+          display: socialLinks[0].youtube ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://www.youtube.com/channel/${socialLinks[0].youtube}`
@@ -318,7 +348,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(37, 211, 102)" }}
+        style={{
+          color: "rgb(37, 211, 102)",
+          display: socialLinks[0].whatsapp ? "block" : "none",
+        }}
         href={
           socialLinks.length > 0
             ? `https://wa.me/${socialLinks[0].whatsapp}`
@@ -345,7 +378,10 @@ const SocialIcons: FC<Props> = ({ socialLinks }) => {
       </a>
       <a
         className="p-2  bg-white rounded cursor-pointer hover:text-orange"
-        style={{ color: "rgb(252, 60, 6)}}" }}
+        style={{
+          color: "rgb(252, 60, 6)}}",
+          display: socialLinks[0].apple_music ? "block" : "none",
+        }}
         href={socialLinks.length > 0 ? `${socialLinks[0].apple_music}` : "#"}
         target="_blank"
         rel="noreferrer"

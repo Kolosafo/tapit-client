@@ -1,5 +1,5 @@
 import { ThunkDispatch } from "@reduxjs/toolkit";
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateSocialLink } from "../../utils/api/dataApi";
 import { Oval } from "react-loader-spinner";
@@ -10,13 +10,13 @@ type Props = {
   title: string;
   url: string;
   id: number;
+  setVisible?: React.Dispatch<React.SetStateAction<string[]>>;
 };
-const SocialCard: FC<Props> = ({ title, url, id }) => {
+const SocialCard: FC<Props> = ({ title, url, id, setVisible }) => {
   const [inputVal, setInput] = useState(url);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
   const [loading, setLoading] = useState(false);
   const notify = (arg: string) => toast(arg);
-
   const runUpdateLink = () => {
     setLoading(true);
     const key = title;
@@ -35,10 +35,21 @@ const SocialCard: FC<Props> = ({ title, url, id }) => {
     data[key] = "";
     data["id"] = id;
     setInput("");
-    dispatch(updateSocialLink(data)).then(() => {
-      notify("Deleted!");
-    });
+    // dispatch(updateSocialLink(data)).then(() => {
+    //   notify("Deleted!");
+    //   setVisible
+    //     ? setVisible((state) => [...state].filter((id) => id !== title))
+    //     : null;
+    // });
+
+    setVisible
+      ? setVisible((state) => [...state].filter((id) => id !== title))
+      : null;
   };
+  useEffect(() => {
+    setInput(url);
+  }, [url]);
+
   return (
     <div className="flex items-center justify-between px-3 pt-4 pb-3 my-3 space-x-3 bg-white rounded ">
       <ToastContainer />

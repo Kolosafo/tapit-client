@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import AboutUS from "../../assets/img/aboutus.png";
 import PhoneImg from "../../assets/img/singlePhone.png";
 import { useNavigate } from "react-router-dom";
+import FaqCard from "../../components/FAQ";
 
 const IndexHtml = () => {
   const navigate = useNavigate();
@@ -193,156 +194,64 @@ const IndexHtml = () => {
                   Frequently Asked Questions
                 </h2>
                 <div className="flex flex-wrap -m-1 space-y-5 mb-11">
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              HOW DOES THIS WORK?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              WHAT CAN I DO WITH MY TAP IT CARD?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              HOW DO I ADD MY DETAILS?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              HOW DO I CHANGE MY DETAILS?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              DO SMARTPHONES NEED AN APP TO USE THIS TECHNOLOGY?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              What phones will it work with?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              WHAT PHONES ARE COMPATIBLE?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              IS Tap it SECURE?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-full p-">
-                    <div className="px-4 py-5 bg-gray-100 border-2 border-indigo-600 first-letter:md:px-8 md:py-7 bg-opacity-60 rounded-2xl shadow-10xl">
-                      <div className="flex flex-wrap justify-between -m-2">
-                        <div className="flex-1">
-                          <div className="flex justify-between w-full p-2 cursor-pointer">
-                            <h3 className="font-semibold leading-normal uppercase md:text-lg ">
-                              IS THERE A MONTHLY SUBSCRIPTION FEE?
-                            </h3>
-                            <span className="text-blue">
-                              <span></span>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <FaqCard
+                    answerText="The tap it cards has a NFC chip inside that wirelessly sends your information. If you tap the card on
+                    compatible phones, a link will open up with your contact information etc. Ready to be saved to the phone.
+                    For older phones that don&#39;t have NFC, there is a QR code on the back of the card."
+                    questionText="HOW DOES THIS WORK?"
+                  />
+                  <FaqCard
+                    answerText="The possibilities are virtually endless as this technology has many case studies for its use. However, we
+                    find that the most common are contact details, social media handles, websites &amp; product information.
+                    Although anything with a digital presence can be transferred."
+                    questionText="WHAT CAN I DO WITH MY TAP IT CARD?"
+                  />
+                  <FaqCard
+                    answerText="Once purchased you will receive an email with an invitation to create a profile. Here is where you can add
+                    all of your contact details &amp; social media handles etc."
+                    questionText="HOW DO I ADD MY DETAILS?"
+                  />
+                  <FaqCard
+                    answerText="You can change your details in real time in a matter of seconds within your online profile."
+                    questionText="HOW DO I CHANGE MY DETAILS?"
+                  />
+                  <FaqCard
+                    answerText="No, it&#39;s as simple as tap and go. As this technology is similar to Apple and Android Pay, 9/10 phones are
+                    now compatible with it."
+                    questionText="DO SMARTPHONES NEED AN APP TO USE THIS TECHNOLOGY?"
+                  />
+                  <FaqCard
+                    answerText="Between NFC and QR it works with majority of smartphones in the market today.
+                    iPhone Xs and newer: you can simply Tap
+                    iPhone 6 – X: Open Camera and Scan QR code
+                    Android Phones: Turn on NFC and Tap or Scan QR using camera."
+                    questionText="What phones will it work with?"
+                  />
+                  <FaqCard
+                    answerText="All Androids and all newer aged iPhones are compatible with our tap it card. For older i-phones we
+                    recommending using the QR code feature. Please see here for our full compatibility list"
+                    questionText="WHAT PHONES ARE COMPATIBLE?"
+                  />
+
+                  <FaqCard
+                    answerText="Tap it is as secure as any new-age technology and as safe as the information you put on it. It only works
+                    within an inch of a compatible device, and can only share, rather than extract information. In addition,
+                    there is no financial information stored. All details shared are typically details you will have on any of your
+                    traditional business cards."
+                    questionText="IS Tap it SECURE?"
+                  />
+                  <FaqCard
+                    answerText="There is no subscription fee to use our cards after your initial purchase. However in the future we plan on
+                    adding additional futures that may require a payment to get access"
+                    questionText="IS THERE A MONTHLY SUBSCRIPTION FEE?"
+                  />
                 </div>
                 <p className="font-medium text-center text-gray-600">
                   <span>Still have any questions?</span>
                   <a
                     className="pl-2 font-semibold text-indigo-600 hover:text-indigo-700"
                     href="#"
+                    onClick={() => navigate("/contactUs")}
                   >
                     Contact us
                   </a>

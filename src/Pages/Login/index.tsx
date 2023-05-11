@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useState, useEffect, SyntheticEvent } from "react";
 import LoginImg from "../../assets/img/login_img.jpg";
 import { useDispatch, useSelector } from "react-redux";
@@ -124,7 +125,10 @@ const Login = () => {
                 <div className="mt-4 space-y-3">
                   <p className="text-sm text-right text-primary">
                     <a
-                      onClick={() => setResetPassword(true)}
+                      onClick={() => {
+                        setResetPassword(true);
+                        setEmail("");
+                      }}
                       className="cursor-pointer"
                     >
                       Forgot Password?
@@ -168,6 +172,7 @@ const Login = () => {
                             type="email"
                             name="emailInp"
                             id=""
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email address to retrieve your account password"
                             className="w-full px-3 py-4 text-sm bg-white border rounded focus:border-orange text-gray-600 focus:outline-none border-primary"
                           />
@@ -175,8 +180,8 @@ const Login = () => {
                       </div>
                       <button
                         className="bg-[#4f46e5] text-white border border-orange w-full rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
-                        type="submit"
-                        onClick={() => {
+                        onClick={(e: SyntheticEvent) => {
+                          e.preventDefault();
                           setErrorMsg(null);
                           dispatch(forgotPassword({ email })).then((e) =>
                             e.payload === "Success"
@@ -187,7 +192,7 @@ const Login = () => {
                           );
                         }}
                       >
-                        Reset Password
+                        {loading && !errorMsg ? "Loading..." : "Reset Password"}
                       </button>
                     </div>
                   </form>
@@ -196,7 +201,13 @@ const Login = () => {
 
               <div className="mt-4 space-y-3 ">
                 <p className="text-sm text-center">
-                  <a href="#" onClick={() => setResetPassword(false)}>
+                  <a
+                    href="#"
+                    onClick={() => {
+                      setResetPassword(false);
+                      setEmail("");
+                    }}
+                  >
                     Go Back To Login
                   </a>
                 </p>

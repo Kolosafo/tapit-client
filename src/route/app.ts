@@ -7,7 +7,7 @@ import {
   ScannedResult,
   Share,
   resetPassword,
-  ContactUs
+  ContactUs,
 } from "../Pages";
 
 export interface AppRouteType {

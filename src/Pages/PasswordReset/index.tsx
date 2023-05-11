@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Oval } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -67,7 +67,9 @@ const ResetPasswordConfrim = () => {
         ) : (
           <ResetDiv>
             <TopDiv>
-              <h1>Reset Your Password</h1>
+              <h1 style={{ fontSize: "18px", fontWeight: "600" }}>
+                Reset Your Password
+              </h1>
               <p>Enter a new password for your account</p>
             </TopDiv>
             <BotDiv2>
@@ -107,30 +109,15 @@ const ResetPasswordConfrim = () => {
                 />
               </PassDiv>
             </BotDiv2>
-            <ResetBtnDiv>
-              <ResetBtn
-                onClick={runResetPassword}
-                style={{
-                  pointerEvents: loading ? "none" : "auto",
-                  // @ts-ignore
-                  disabled: loading ? "true" : "false",
-                }}
-              >
-                Reset Password
-                {loading && (
-                  <Oval
-                    height={20}
-                    width={30}
-                    color="#fff"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="oval-loading"
-                    secondaryColor="black"
-                    strokeWidth={6}
-                    strokeWidthSecondary={6}
-                  />
-                )}
+            <ResetBtnDiv
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ResetBtn onClick={runResetPassword}>
+                {loading ? "Loading..." : "Reset Password"}
               </ResetBtn>
             </ResetBtnDiv>
           </ResetDiv>

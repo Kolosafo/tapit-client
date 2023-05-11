@@ -50,7 +50,12 @@ const ScannedResult = () => {
     setPrivatePhone(
       userProfileData ? userProfileData.private_phone_number : ""
     );
-    notify("Private Number Copied To Clipboard!");
+
+    // DOWNLOAD AN COPY!
+    makeVCard();
+    setPrivatePhoneCopied(true);
+    notify("Copied!");
+
     setTimeout(() => {
       setPrivatePhone("Private Number");
     }, 10000);
@@ -91,6 +96,41 @@ const ScannedResult = () => {
     nullFooter.style.display = "none";
   }, [username]);
   console.log(socialLinks);
+
+  // VC CARD SIDE
+
+  function downloadToFile(content: any, filename: any, contentType: any) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+
+    document.location.href = URL.createObjectURL(file);
+    // a.href = URL.createObjectURL(file);
+    // a.download = filename;
+    // a.click();
+
+    URL.revokeObjectURL(a.href);
+  }
+  const makeVCardVersion = () => `VERSION:3.0`;
+  const makeVCardFirstName = (firstName: string, lastName: string) =>
+    `FN:${firstName} ${lastName}`;
+  const makeVCardTel = (phone: string) => `TEL;TYPE=WORK,VOICE:${phone}`;
+  const makeVCardTimeStamp = () => `REV:${new Date().toISOString()}`;
+
+  function makeVCard() {
+    const vcard = `BEGIN:VCARD
+${makeVCardVersion()}
+${makeVCardFirstName(
+  userProfileData ? userProfileData.first_name : "",
+  userProfileData ? userProfileData.last_name : ""
+)}
+${makeVCardTel(userProfileData ? userProfileData.private_phone_number : "")}
+
+${makeVCardTimeStamp()}
+END:VCARD`;
+    downloadToFile(vcard, "vcard.vcf", "text/vcard");
+  }
+
+  // downloadEl.addEventListener("click", makeVCard);
   return (
     <div className="h-screen">
       {loading ? (
@@ -153,12 +193,13 @@ const ScannedResult = () => {
               </div>
             </div>
             <div className="flex  items-center justify-center mt-20 mb-10 space-x-3">
-              <p
+              <a
+                href={`tel:${userProfileData?.public_phone_number}`}
                 onClick={setCopied}
                 className="flex items-center justify-center px-3 py-3 space-x-2 text-xs font-bold text-center border rounded-md cursor-pointer bg-light border-dark text-dark sm:px-5 md:text-sm hover:opacity-80"
               >
                 {phoneCopied}
-              </p>
+              </a>
               <div className="relative">
                 <button
                   className="bg-orange  text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
@@ -181,24 +222,23 @@ const ScannedResult = () => {
                         size={40}
                       />
                     ) : (
-                      <IoIosCopy
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          right: "-40px",
-                          cursor: "pointer",
-                          color: "red",
-                        }}
-                        size={40}
-                        onClick={() => {
-                          navigator.clipboard.writeText(
-                            userProfileData
-                              ? userProfileData.private_phone_number
-                              : ""
-                          );
-                          setPrivatePhoneCopied(true);
-                        }}
-                      />
+                      <a href={"#z"}>
+                        <IoIosCopy
+                          style={{
+                            position: "absolute",
+                            top: "2px",
+                            right: "-40px",
+                            cursor: "pointer",
+                            color: "red",
+                          }}
+                          size={40}
+                          // onClick={() => {
+                          //   // makeVCard();
+                          //   // setPrivatePhoneCopied(true);
+                          //   // notify("Copied!");
+                          // }}
+                        />
+                      </a>
                     )}
                   </>
                 ) : null}

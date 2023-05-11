@@ -19,11 +19,13 @@ export const ModalCon = styled.div`
   margin: auto;
   padding: 20px;
   border: 2px solid #e0e0e0;
-  width: 50%;
   height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and (max-width: 768px) {
+    width: 90%;
+  }
 `;
 export const ResetDiv = styled.div`
   display: flex;

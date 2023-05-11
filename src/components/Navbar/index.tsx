@@ -115,6 +115,7 @@ const Navbar = () => {
             type="button"
             onClick={() => {
               dispatch(logout());
+              navigate("/");
             }}
           >
             Log Out
