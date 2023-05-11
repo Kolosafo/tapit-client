@@ -294,10 +294,22 @@ const IndexHtml = () => {
                     <h3 className="mb-3 text-xl font-bold leading-snug font-heading">
                       Send Email
                     </h3>
-                    <p className="font-medium leading-relaxed">info@mail.com</p>
-                    <p className="font-medium leading-relaxed">
-                      support@mail.com
-                    </p>
+                    <a
+                      href="mailto:tapit_official@yahoo.com"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium leading-relaxed text-[#4f46e5] block"
+                    >
+                      tapit_official@yahoo.com
+                    </a>
+                    <a
+                      href="mailto:tapitofficial1@gmail.com"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium leading-relaxed text-[#4f46e5]"
+                    >
+                      tapitofficial1@gmail.com
+                    </a>
                   </div>
                 </div>
                 <div className="w-full p-3 md:w-1/3">
@@ -328,7 +340,7 @@ const IndexHtml = () => {
                       ‭+234 816 445 6587‬
                     </p>
                     <p className="font-medium leading-relaxed">
-                      ‭+234 816 445 6587‬
+                      ‭+234 907 402 2651‬
                     </p>
                   </div>
                 </div>
@@ -477,7 +489,9 @@ const IndexHtml = () => {
                     <div className="w-auto p-4">
                       <a
                         className="text-indigo-600 hover:text-indigo-700"
-                        href="#"
+                        href="https://instagram.com/tapitofficial_/"
+                        target="_blank"
+                        rel="noreferrer"
                       >
                         <svg
                           width="16"

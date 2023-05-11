@@ -44,9 +44,6 @@ const ScannedResult = () => {
   };
 
   const getPrivateContact = () => {
-    navigator.clipboard.writeText(
-      userProfileData ? userProfileData?.public_phone_number : ""
-    );
     setPrivatePhone(
       userProfileData ? userProfileData.private_phone_number : ""
     );
@@ -60,6 +57,15 @@ const ScannedResult = () => {
       setPrivatePhone("Private Number");
     }, 10000);
   };
+
+  const setCopied = () => {
+    setPhoneCopied("Downloading...");
+    makeVCard2();
+    setTimeout(() => {
+      setPhoneCopied("Public Number");
+    }, 2000);
+  };
+
   const getPrompt = () => {
     setPrivatePhoneCopied(false);
     const code = userProfileData?.passcode;
@@ -69,16 +75,6 @@ const ScannedResult = () => {
     } else {
       notify("Incorrect Passcode");
     }
-  };
-
-  const setCopied = () => {
-    navigator.clipboard.writeText(
-      userProfileData ? userProfileData?.public_phone_number : ""
-    );
-    setPhoneCopied("Copied!");
-    setTimeout(() => {
-      setPhoneCopied("Public Number");
-    }, 2000);
   };
 
   useEffect(() => {
@@ -110,6 +106,7 @@ const ScannedResult = () => {
 
     URL.revokeObjectURL(a.href);
   }
+
   const makeVCardVersion = () => `VERSION:3.0`;
   const makeVCardFirstName = (firstName: string, lastName: string) =>
     `FN:${firstName} ${lastName}`;
@@ -121,9 +118,25 @@ const ScannedResult = () => {
 ${makeVCardVersion()}
 ${makeVCardFirstName(
   userProfileData ? userProfileData.first_name : "",
+  userProfileData ? `${userProfileData.last_name} Personal` : ""
+)}
+
+${makeVCardTel(userProfileData ? userProfileData.private_phone_number : "")}
+
+${makeVCardTimeStamp()}
+END:VCARD`;
+    downloadToFile(vcard, "vcard.vcf", "text/vcard");
+  }
+
+  function makeVCard2() {
+    const vcard = `BEGIN:VCARD
+${makeVCardVersion()}
+${makeVCardFirstName(
+  userProfileData ? userProfileData.first_name : "",
   userProfileData ? userProfileData.last_name : ""
 )}
-${makeVCardTel(userProfileData ? userProfileData.private_phone_number : "")}
+
+${makeVCardTel(userProfileData ? userProfileData.public_phone_number : "")}
 
 ${makeVCardTimeStamp()}
 END:VCARD`;
@@ -193,55 +206,58 @@ END:VCARD`;
               </div>
             </div>
             <div className="flex  items-center justify-center mt-20 mb-10 space-x-3">
-              <a
-                href={`tel:${userProfileData?.public_phone_number}`}
+              <span
                 onClick={setCopied}
                 className="flex items-center justify-center px-3 py-3 space-x-2 text-xs font-bold text-center border rounded-md cursor-pointer bg-light border-dark text-dark sm:px-5 md:text-sm hover:opacity-80"
               >
                 {phoneCopied}
-              </a>
+              </span>
               <div className="relative">
-                <button
-                  className="bg-orange  text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
-                  type="button"
-                  onClick={getPrompt}
-                >
-                  {privatePhone}{" "}
-                </button>
-                {privatePhone === userProfileData?.private_phone_number ? (
+                {userProfileData?.private_phone_number && (
                   <>
-                    {privatePhoneCopied ? (
-                      <AiFillCheckCircle
-                        style={{
-                          position: "absolute",
-                          top: "2px",
-                          right: "-40px",
-                          cursor: "pointer",
-                          color: "green",
-                        }}
-                        size={40}
-                      />
-                    ) : (
-                      <a href={"#z"}>
-                        <IoIosCopy
-                          style={{
-                            position: "absolute",
-                            top: "2px",
-                            right: "-40px",
-                            cursor: "pointer",
-                            color: "red",
-                          }}
-                          size={40}
-                          // onClick={() => {
-                          //   // makeVCard();
-                          //   // setPrivatePhoneCopied(true);
-                          //   // notify("Copied!");
-                          // }}
-                        />
-                      </a>
-                    )}
+                    <button
+                      className="bg-orange  text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
+                      type="button"
+                      onClick={getPrompt}
+                    >
+                      {privatePhone}{" "}
+                    </button>
+                    {privatePhone === userProfileData?.private_phone_number ? (
+                      <>
+                        {privatePhoneCopied ? (
+                          <AiFillCheckCircle
+                            style={{
+                              position: "absolute",
+                              top: "2px",
+                              right: "-40px",
+                              cursor: "pointer",
+                              color: "green",
+                            }}
+                            size={40}
+                          />
+                        ) : (
+                          <a href={"#z"}>
+                            <IoIosCopy
+                              style={{
+                                position: "absolute",
+                                top: "2px",
+                                right: "-40px",
+                                cursor: "pointer",
+                                color: "red",
+                              }}
+                              size={40}
+                              // onClick={() => {
+                              //   // makeVCard();
+                              //   // setPrivatePhoneCopied(true);
+                              //   // notify("Copied!");
+                              // }}
+                            />
+                          </a>
+                        )}
+                      </>
+                    ) : null}
                   </>
-                ) : null}
+                )}
               </div>
             </div>
             <div className="container pb-10 space-y-6 p-5">

@@ -2,8 +2,7 @@ import React, { useState, useEffect, SyntheticEvent } from "react";
 import { BsCheckCircle } from "react-icons/bs";
 import { Form, SupportContainer } from "./style";
 import { contactUs } from "../../utils/api/account";
-import { useSelector } from "react-redux";
-import { IRootState } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 const ContactUs = () => {
   const [success, setSuccess] = useState(false);
@@ -12,6 +11,7 @@ const ContactUs = () => {
   const [emailInput, setEmailInput] = useState("");
   const [message, setMessage] = useState("Hi, I'd like to get a TapIt Account");
 
+  const navigate = useNavigate();
   const onNameChangeHandler = (event: any) => {
     setEmailInput(event.target.value);
   };
@@ -106,7 +106,7 @@ const ContactUs = () => {
               <BsCheckCircle size={"200px"} color={"green"} />
               <a
                 style={{ cursor: "pointer", color: "blue" }}
-                onClick={() => setSuccess(false)}
+                onClick={() => navigate("/")}
               >
                 Continue
               </a>
