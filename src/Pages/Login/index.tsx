@@ -52,7 +52,13 @@ const Login = () => {
             <div className="pt-10">
               <div className="px-10 w-full md:w-[42rem]">
                 {errorMsg && (
-                  <span className="text-red-600 text-sm"> {errorMsg} </span>
+                  <>
+                    <span className="text-red-600 text-sm"> {errorMsg} </span>
+                    <br />
+                    <span className="text-red-600 text-sm block">
+                      Please note that both fields are case sensitive.
+                    </span>
+                  </>
                 )}
                 <h2 className="pb-10 font-bold md:text-2xl text-dark">
                   Log In
