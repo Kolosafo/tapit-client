@@ -106,12 +106,12 @@ const Navbar = () => {
       </div>
       {isLogged && user ? (
         <div className="flex">
-          <span className="flex mx-5 base_bg text-black border border-orange undefined rounded-full px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80  items-center space-x-2">
+          <span className="flex mx-5 base_bg text-black border border-orange undefined rounded-full px-[1rem] sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80  items-center space-x-2">
             {user.username[0]}
           </span>
 
           <button
-            className="bg-orange text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
+            className="whitespace-nowrap bg-orange text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
             type="button"
             onClick={() => {
               dispatch(logout());
@@ -123,7 +123,7 @@ const Navbar = () => {
         </div>
       ) : (
         <button
-          className="bg-orange text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
+          className="whitespace-nowrap bg-orange text-light border border-orange undefined rounded-md px-3 sm:px-5 py-3 font-bold  justify-center text-center md:text-sm cursor-pointer text-xs  hover:opacity-80 flex items-center space-x-2"
           type="button"
           onClick={() => navigate("/login")}
         >
